@@ -25,7 +25,7 @@ jobs:
           npm install @capacitor/core@5 @capacitor/cli@5 @capacitor/android@5
           npx cap init "Emberkoveto Kamera" "com.sajat.emberkoveto" --web-dir=www
           npx cap add android
-          python3 -c 'p="android/app/src/main/AndroidManifest.xml"; s=open(p).read().replace("<application", "<uses-permission android:name=\"android.permission.CAMERA\" />\n    <application"); open(p,"w").write(s)'
+          sed -i 's/<application/<uses-permission android:name="android.permission.CAMERA" \/>\n    <application/' android/app/src/main/AndroidManifest.xml
           cd android
           chmod +x gradlew
           ./gradlew assembleDebug
